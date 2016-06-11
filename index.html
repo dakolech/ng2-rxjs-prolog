@@ -46,7 +46,7 @@
 					<section>
 						<div style="float: left; width: 40%" >
 							<h5> Non-reactive way </h5>
-							<pre><code class="hljs javascript" >
+							<pre><code class="hljs javascript">
 	var a = 5;
 	var b = 10;
 	var c = a + b;
@@ -58,7 +58,7 @@
 						</div>
 						<div style="float: right; width: 40%" >
 							<h5> Reactive way </h5>
-							<pre><code class="hljs javascript"  >
+							<pre><code class="hljs javascript">
 	var a = 5;
 	var b = 10;
 	var c = a + b;
@@ -70,20 +70,20 @@
 						</div>
 					</section>
 					<section>
-						<h2> Object-oriented reactive programming </h2>
+						<h3> Object-oriented reactive programming </h3>
 						<p>Instead of methods and fields, objects have reactions that automatically re-evaluate when the other reactions they depend on have been modified.</p>
 					</section>
 					<section>
-						<h2> Functional reactive programming </h2>
+						<h3> Functional reactive programming </h3>
 						<p> Functional Reactive Programming is a variant of Reactive Programming that follows Functional Programming principles such as referential transparency, and seeks to be purely functional. </p>
 					</section>
 					<section>
-						<h3>Implementations:</h3>
+						<h3>Implementations in JS:</h3>
 						<ul>
 							<li class="fragment"> <strong> Bacon.js - </strong> small functional reactive programming lib for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=baconjs&repo=bacon.js&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
 							<li class="fragment"> <strong> Cycle.js - </strong> fully reactive JavaScript framework for Human-Computer Interaction. <iframe src="https://ghbtns.com/github-btn.html?user=cyclejs&repo=core&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
 							<li class="fragment"> <strong> Elm - </strong> type inferred, functional reactive language that compiles to HTML, CSS, and JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=elm-lang&repo=elm-compiler&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
-							<li class="fragment"> <strong> Kefir </strong> - reactive Pprogramming library for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=rpominov&repo=kefir&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+							<li class="fragment"> <strong> Kefir </strong> - reactive programming library for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=rpominov&repo=kefir&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
 							<li class="fragment"> <strong> RxJS </strong> - reactive extensions for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=Reactive-Extensions&repo=RxJS&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
 						</ul>
 					</section>
@@ -134,6 +134,110 @@
 						<a href="https://www.trello.com" class="frontpage-logo"><img src="images/trello-logo.png"></a>
 						<a href="https://www.airbnb.com/" class="frontpage-logo"><img src="images/airbnb-logo.jpg"></a>
 						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>RxJS</h2>
+						<p>set of libraries to compose asynchronous and event-based programs using observable collections and Array#extras style composition in JavaScript</p>
+					</section>
+					<section>
+						<h3>RxJS 4.0 vs 5.0</h3>
+						<p>RxJS 5 is a ground-up rewrite of RxJS that actually began development when RxJS was in 2.0. This new version of RxJS had
+three basic goals:</p>
+						<ol>
+							<li>Better performance</li>
+							<li>Better debugging</li>
+							<li>Compliance with the <a href="https://github.com/zenparsing/es-observable">ES7 Observable Spec</a></li>
+						</ol>
+					</section>
+					<section>
+						<h3>Differences:</h3>
+						<ul>
+							<li>Observer Interface Changes (.onNext(value) -> .next(value))</li>
+							<li>Subscription dispose is unsubscribe</li>
+							<li>Operators Renamed or Removed (flatMapLatest -> switchMap, where -> filter)</li>
+							<li>Operator Splits (map -> map and mapTo)</li>
+						</ul>
+						<br><br><br>
+						<a href="https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md"> Migrating from RxJS 4 to 5 </a>
+					</section>
+					<section>
+						<p>The essential concepts in RxJS which solve async event management are:</p>
+						<ul>
+							<li class="fragment"><strong>Observable:</strong> represents the idea of an invokable collection of future values or events.</li>
+							<li class="fragment"><strong>Observer:</strong> is a collection of callbacks that knows how to listen to values delivered by the Observable.</li>
+							<li class="fragment"><strong>Subscription:</strong> represents the execution of an Observable, is primarily useful for cancelling the execution.</li>
+							<li class="fragment"><strong>Operators:</strong> are pure functions that enable a functional programming style of dealing with collections with operations like <code>map</code>, <code>filter</code>, <code>concat</code>, <code>flatMap</code>, etc.</li>
+							<li class="fragment"><strong>Subject:</strong> is the equivalent to an EventEmitter, and the only way of multicasting a value or event to multiple Observers.</li>
+							<li class="fragment"><strong>Schedulers:</strong> are centralized dispatchers to control concurrency, allowing us to coordinate when computation happens on e.g. <code>setTimeout</code> or <code>requestAnimationFrame</code> or others.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Observable</h1>
+					</section>
+					<section>
+						<h3>Creating observable</h3>
+							<pre><code class="hljs javascript">
+var observable = Rx.Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+  setTimeout(() => {
+    observer.next(4);
+    observer.complete();
+  }, 1000);
+});
+							</code></pre>
+					</section>
+					<section>
+						<h3>Subscribing observable</h3>
+							<pre><code class="hljs javascript">
+observable.subscribe({
+  next: x => console.log('got value ' + x),
+  error: err => console.error('something wrong occurred: ' + err),
+  complete: () => console.log('done'),
+});
+							</code></pre>
+						<a href="http://plnkr.co/edit/byuY0j?p=info">Source</a>
+					</section>
+					<section>
+						Observable can be created from:
+						<ul>
+							<li class="fragment">Array</li>
+							<li class="fragment">Array-like object (e.g. DOM elements)</li>
+							<li class="fragment">Event</li>
+							<li class="fragment">Iterable object</li>
+							<li class="fragment">Observable-like</li>
+							<li class="fragment">Promise</li>
+						</ul>
+						<a href="http://plnkr.co/edit/AANaOLWcVfStpzJMHhyh?p=preview"> Create from event </a>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Observable vs Promise</h2>
+					</section>
+					<section>
+						
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Cold vs hot observable</h2>
+					</section>
+					<section>
+						
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Most useful operators</h2>
+					</section>
+					<section>
+						
 					</section>
 				</section>
 			</div>
