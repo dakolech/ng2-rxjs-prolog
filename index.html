@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/styles.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -29,7 +30,7 @@
 					<h3>Intruduction to the RxJS</h3>
 				</section>
 				<section>
-					<section>Reactive Programming</section>
+					<section><h2>Reactive Programming</h2></section>
 					<section>
 						<blockquote cite="https://en.wikipedia.org/wiki/Reactive_programming">
 						"In computing, reactive programming is a programming paradigm oriented around data flows and the propagation of change."
@@ -42,8 +43,99 @@
 						<i style="text-align: right;">- Andre Staltz</i>
 						</blockquote>
 					</section>
+					<section>
+						<div style="float: left; width: 40%" >
+							<h5> Non-reactive way </h5>
+							<pre><code class="hljs javascript" >
+	var a = 5;
+	var b = 10;
+	var c = a + b;
+
+	a = 10;
+
+	c == 20; // false
+							</code></pre>
+						</div>
+						<div style="float: right; width: 40%" >
+							<h5> Reactive way </h5>
+							<pre><code class="hljs javascript"  >
+	var a = 5;
+	var b = 10;
+	var c = a + b;
+
+	a = 10;
+
+	c == 20; // true
+							</code></pre>
+						</div>
+					</section>
+					<section>
+						<h2> Object-oriented reactive programming </h2>
+						<p>Instead of methods and fields, objects have reactions that automatically re-evaluate when the other reactions they depend on have been modified.</p>
+					</section>
+					<section>
+						<h2> Functional reactive programming </h2>
+						<p> Functional Reactive Programming is a variant of Reactive Programming that follows Functional Programming principles such as referential transparency, and seeks to be purely functional. </p>
+					</section>
+					<section>
+						<h3>Implementations:</h3>
+						<ul>
+							<li class="fragment"> <strong> Bacon.js - </strong> small functional reactive programming lib for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=baconjs&repo=bacon.js&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+							<li class="fragment"> <strong> Cycle.js - </strong> fully reactive JavaScript framework for Human-Computer Interaction. <iframe src="https://ghbtns.com/github-btn.html?user=cyclejs&repo=core&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+							<li class="fragment"> <strong> Elm - </strong> type inferred, functional reactive language that compiles to HTML, CSS, and JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=elm-lang&repo=elm-compiler&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+							<li class="fragment"> <strong> Kefir </strong> - reactive Pprogramming library for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=rpominov&repo=kefir&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+							<li class="fragment"> <strong> RxJS </strong> - reactive extensions for JavaScript. <iframe src="https://ghbtns.com/github-btn.html?user=Reactive-Extensions&repo=RxJS&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></li>
+						</ul>
+					</section>
 				</section>
-				<section>Slide 2</section>
+				<section>
+					<section>
+						<h2>ReactiveX</h2>
+						<p class="fragment">ReactiveX is more than an API, it's an idea and a breakthrough in programming. It has inspired several other APIs, frameworks, and even programming languages.</p>
+					</section>
+					<section>
+						<h4 id="languages">Languages</h4>
+
+						<ul>
+							<li>Java: <a href="https://github.com/ReactiveX/RxJava">RxJava</a></li>
+							<li>JavaScript: <a href="https://github.com/Reactive-Extensions/RxJS">RxJS</a></li>
+							<li>C#: <a href="https://github.com/Reactive-Extensions/Rx.NET">Rx.NET</a></li>
+							<li>C#(Unity): <a href="https://github.com/neuecc/UniRx">UniRx</a></li>
+							<li>Scala: <a href="https://github.com/ReactiveX/RxScala">RxScala</a></li>
+							<li>Clojure: <a href="https://github.com/ReactiveX/RxClojure">RxClojure</a></li>
+							<li>C++: <a href="https://github.com/Reactive-Extensions/RxCpp">RxCpp</a></li>
+							<li>Ruby: <a href="https://github.com/Reactive-Extensions/Rx.rb">Rx.rb</a></li>
+							<li>Python: <a href="https://github.com/ReactiveX/RxPY">RxPY</a></li>
+							<li>Groovy: <a href="https://github.com/ReactiveX/RxGroovy">RxGroovy</a></li>
+							<li>JRuby: <a href="https://github.com/ReactiveX/RxJRuby">RxJRuby</a></li>
+							<li>Kotlin: <a href="https://github.com/ReactiveX/RxKotlin">RxKotlin</a></li>
+							<li>Swift: <a href="https://github.com/kzaher/RxSwift">RxSwift</a></li>
+							<li>PHP: <a href="https://github.com/ReactiveX/RxPHP">RxPHP</a></li>
+						</ul>
+					</section>
+					<section>
+						<h4 id="reactivex-for-platforms-and-frameworks">ReactiveX for platforms and frameworks</h4>
+
+						<ul>
+							<li><a href="https://github.com/ReactiveX/RxNetty">RxNetty</a></li>
+							<li><a href="https://github.com/ReactiveX/RxAndroid">RxAndroid</a></li>
+							<li><a href="https://github.com/kzaher/RxSwift">RxCocoa</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Who uses ReactiveX?</h3>
+						<div style="float: right; width: 50%" >
+						<a href="http://rx.codeplex.com/" class="frontpage-logo"><img src="images/microsoft-logo.png"></a>
+						<a href="http://netflix.github.io" class="frontpage-logo"><img src="images/netflix-logo.png"></a>
+						<a href="http://github.com/" class="frontpage-logo"><img src="images/github-logo.png"></a>
+						</div>
+						<div style="float: left; width: 50%" >
+						<a href="http://soundcloud.com/" class="frontpage-logo"><img src="images/soundcloud-logo.png"></a>
+						<a href="https://www.trello.com" class="frontpage-logo"><img src="images/trello-logo.png"></a>
+						<a href="https://www.airbnb.com/" class="frontpage-logo"><img src="images/airbnb-logo.jpg"></a>
+						</div>
+					</section>
+				</section>
 			</div>
 		</div>
 
