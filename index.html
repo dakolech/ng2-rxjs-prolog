@@ -160,7 +160,7 @@ three basic goals:</p>
 							<li>Operator Splits (map -> map and mapTo)</li>
 						</ul>
 						<br><br><br>
-						<a href="https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md"> Migrating from RxJS 4 to 5 </a>
+						<a href="https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md" target="_blank"> Migrating from RxJS 4 to 5 </a>
 					</section>
 					<section>
 						<p>The essential concepts in RxJS which solve async event management are:</p>
@@ -177,6 +177,9 @@ three basic goals:</p>
 				<section>
 					<section>
 						<h1>Observable</h1>
+						<video src="./observable.webm" autoplay loop>
+							Your browser does not support the <code>video</code> element.
+						</video>
 					</section>
 					<section>
 						<h3>Creating observable</h3>
@@ -195,16 +198,16 @@ var observable = Rx.Observable.create(function (observer) {
 					<section>
 						<h3>Subscribing observable</h3>
 							<pre><code class="hljs javascript">
-observable.subscribe({
-  next: x => console.log('got value ' + x),
-  error: err => console.error('something wrong occurred: ' + err),
-  complete: () => console.log('done'),
-});
+observable.subscribe(
+  (x) => console.log('got value ' + x),
+  (err) => console.error('something wrong occurred: ' + err),
+  () => console.log('done')
+);
 							</code></pre>
-						<a href="http://plnkr.co/edit/byuY0j?p=info">Source</a>
+						<a href="https://embed.plnkr.co/X3785Q5lUq0SThnr2jOK/"  target="_blank">Source</a>
 					</section>
 					<section>
-						Observable can be created from:
+						<h3>Observable can be created from:</h3>
 						<ul>
 							<li class="fragment">Array</li>
 							<li class="fragment">Array-like object (e.g. DOM elements)</li>
@@ -213,23 +216,63 @@ observable.subscribe({
 							<li class="fragment">Observable-like</li>
 							<li class="fragment">Promise</li>
 						</ul>
-						<a href="http://plnkr.co/edit/AANaOLWcVfStpzJMHhyh?p=preview"> Create from event </a>
+						<a href="http://embed.plnkr.co/AANaOLWcVfStpzJMHhyh/" target="_blank"> Create from event </a>
 					</section>
 				</section>
 				<section>
 					<section>
-						<h2>Observable vs Promise</h2>
-					</section>
-					<section>
-						
+						<h2  class="fragment">Observable vs Promise</h2>
+						<ul>
+							<li class="fragment">Observables are cancellable</li>
+							<!--<li class="fragment">Observables can be retried</li>-->
+							<li class="fragment">Observables are not executed without observer</li>
+							<li class="fragment">Observables have operators</li>
+						</ul>
+						<a class="fragment" href="https://plnkr.co/edit/IqexueV4QKT7JgDOcudA?p=preview" target="_blank"> Source </a>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Cold vs hot observable</h2>
+						<p class="fragment">Producer - source of values for observable.</p>
 					</section>
 					<section>
-						
+						<h3>Cold observable</h3>
+						<ol class="postList">
+							<li class="fragment">creates the producer</li>
+							<li class="fragment">activates the producer</li>
+							<li class="fragment">starts listening to the producer</li>
+							<li class="fragment">unicast</li></ol>
+					</section>
+					<section>
+						<h3>Hot observable</h3>
+						<ol class="postList">
+							<li class="fragment">shares a reference to a producer</li>
+							<li class="fragment">starts listening to the producer</li>
+							<li class="fragment">multicast</li>
+					</section>
+					<section>
+						<div class="fragment">
+							<h5> Cold observable </h5>
+							<pre><code class="hljs javascript">
+const source = new Observable((observer) => {
+  const socket = new WebSocket('ws://someurl');
+  socket.addEventListener('message', (e) => observer.next(e));
+  return () => socket.close();
+});
+							</code></pre>
+						</div>
+						<br><br>
+						<div class="fragment">
+							<h5> Hot observable </h5>
+							<pre><code class="hljs javascript">
+const socket = new WebSocket('ws://someurl');
+const source = new Observable((observer) => {
+  socket.addEventListener('message', (e) => observer.next(e));
+});
+							</code></pre>
+						</div>
+						<a class="fragment" href="https://plnkr.co/edit/s2vriUDpbtqEPk1t1IZv?p=preview" target="_blank"> Http Angular 2 </a>
 					</section>
 				</section>
 				<section>
@@ -237,7 +280,44 @@ observable.subscribe({
 						<h2>Most useful operators</h2>
 					</section>
 					<section>
-						
+						<h3>map</h3>
+						<p>Like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map()</a>,
+it passes each source value through a transformation function to get
+corresponding output values.</p>
+						<img src="images/map.png">
+					</section>
+					<section>
+						<h3>filter</h3>
+						<p>Like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">Array.prototype.filter()</a>,
+							it only emits a value from the source if it passes a criterion function.
+						</p>
+						<img src="images/filter.png">
+					</section>
+					<section>
+						<h3>scan</h3>
+						<p>It's like reduce, but emits the current accumulation whenever the source emits a value.</p>
+						<img src="images/scan.png">
+					</section>
+					<section>
+						<h3>do</h3>
+						<p>Intercepts each emission on the source and runs a function, but returns an output which is identical to the source.</p>
+						<img src="images/do.png">
+					</section>
+					<section>
+						<h3>withLatestFrom</h3>
+						<p>Whenever the source Observable emits a value, it computes a formula using that value plus the latest values from other input Observables, then emits the output of that formula.</p>
+						<img style="height: 25rem;" src="images/withLatestFrom.png">
+					</section>
+					<section>
+						<h3>combineLatest</h3>
+						<p>Whenever any input Observable emits a value, it computes a formula using the latest values from all the inputs, then emits the output of that formula.</p>
+						<img style="height: 25rem;" src="images/combineLatest.png">
+					</section>
+					<section>
+						<h3>switchMap (flatMapLatest in RxJS 4)</h3>
+						<p>Maps each value to an Observable, then flattens all of
+these inner Observables using <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">switch</a></p>
+						<img style="height: 25rem;" src="images/switchMap.png">
 					</section>
 				</section>
 			</div>
