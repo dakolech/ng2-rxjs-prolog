@@ -76,6 +76,7 @@
 					<section>
 						<h3> Functional reactive programming </h3>
 						<p> Functional Reactive Programming is a variant of Reactive Programming that follows Functional Programming principles such as referential transparency, and seeks to be purely functional. </p>
+						<a href="https://medium.com/@andrestaltz/why-i-cannot-say-frp-but-i-just-did-d5ffaa23973b#.8sx7elq7v">Why I cannot say FRP but I just did</a>
 					</section>
 					<section>
 						<h3>Implementations in JS:</h3>
@@ -216,7 +217,7 @@ observable.subscribe(
 							<li class="fragment">Observable-like</li>
 							<li class="fragment">Promise</li>
 						</ul>
-						<a href="http://embed.plnkr.co/AANaOLWcVfStpzJMHhyh/" target="_blank"> Create from event </a>
+						<a class="fragment" href="http://embed.plnkr.co/AANaOLWcVfStpzJMHhyh/" target="_blank"> Create from event </a>
 					</section>
 				</section>
 				<section>
@@ -300,6 +301,7 @@ corresponding output values.</p>
 						<h3>do</h3>
 						<p>Intercepts each emission on the source and runs a function, but returns an output which is identical to the source.</p>
 						<img src="images/do.png">
+						<a href="http://plnkr.co/edit/7JZyZeWHxIGQCMS5Zvud?p=preview" target="_blank"> Source </a>
 					</section>
 					<section>
 						<h3>withLatestFrom</h3>
@@ -308,13 +310,14 @@ corresponding output values.</p>
 					</section>
 					<section>
 						<h3>combineLatest</h3>
-						<p>Whenever any input Observable emits a value, it computes a formula using the latest values from all the inputs, then emits the output of that formula.</p>
+						<p>Whenever any input Observable emits a value, it computes a formula using the latest values from all the inputs, then emits the output of that formula.
+						<a href="http://plnkr.co/edit/ZUCMSiqhsKdawUieYf3C target="_blank"> Source </a> </p>
 						<img style="height: 25rem;" src="images/combineLatest.png">
 					</section>
 					<section>
 						<h3>switchMap (flatMapLatest in RxJS 4)</h3>
 						<p>Maps each value to an Observable, then flattens all of
-these inner Observables using <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">switch</a></p>
+these inner Observables using <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switch">switch</a> <a href="http://plnkr.co/edit/W7ii4Tp7WtOBYhopJbO2?p=preview target="_blank"> Source </a></p>
 						<img style="height: 25rem;" src="images/switchMap.png">
 					</section>
 				</section>
